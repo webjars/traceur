@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>traceur</artifactId>
-    <version>0.0.43</version>
+    <version>0.0.43-SNAPSHOT</version>
     <name>traceur-compiler</name>
     <description>google traceur ES6 compiler</description>
     <url>http://webjars.org</url>
@@ -25,9 +25,9 @@
     </licenses>
 
     <scm>
-        <url>http://github.com/google/traceur-compiler</url>
-        <connection>scm:git:https://github.com/google/traceur-compiler.git</connection>
-        <developerConnection>scm:git:https://github.com/google/traceur-compiler.git</developerConnection>
+        <url>http://github.com/webjars/traceur</url>
+        <connection>scm:git:https://github.com/webjars/traceur.git</connection>
+        <developerConnection>scm:git:https://github.com/webjars/traceur.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
@@ -94,7 +94,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>2.5</version>
             </plugin>
 
             <plugin>
