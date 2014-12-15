@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>traceur</artifactId>
-    <version>0.0.44-SNAPSHOT</version>
+    <version>0.0.79-SNAPSHOT</version>
     <name>traceur-compiler</name>
     <description>google traceur ES6 compiler</description>
     <url>http://webjars.org</url>
@@ -40,33 +40,26 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstreamVersion>0.0.43</upstreamVersion>
+        <upstreamVersion>0.0.79</upstreamVersion>
         <upstream.url>https://github.com/google/traceur-compiler</upstream.url>
         <extractDir>${project.build.directory}/traceur-compiler-${upstreamVersion}</extractDir>
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${upstreamVersion}</destDir>
+        <requirejs>
+            {
+                "paths": {
+                    "traceur-runtime": "traceur/bin/traceur-runtime"
+                },
+                shim: {
+                    "traceur-runtime": {
+                        "exports": "$traceurRuntime",
+                    }
+                }
+            }
+        </requirejs>
     </properties>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>wagon-maven-plugin</artifactId>
-                <version>1.0-beta-4</version>
-                <executions>
-                    <execution>
-                        <id>download-archive</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>download-single</goal>
-                        </goals>
-                        <configuration>
-                            <url>${upstream.url}/archive</url>
-                            <fromFile>${upstreamVersion}.zip</fromFile>
-                            <toDir>${project.build.directory}</toDir>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
 
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
@@ -77,13 +70,22 @@
                         <goals>
                             <goal>run</goal>
                         </goals>
-                        <configuration>
+                         <configuration>
                             <target>
-                                <echo message="unzip archive" />
+                                <get src="${upstream.url}/archive/${upstreamVersion}.zip" dest="${project.build.directory}/${upstreamVersion}.zip" />
                                 <unzip src="${project.build.directory}/${upstreamVersion}.zip" dest="${project.build.directory}" />
-
-                                <echo message="moving resources" />
+                                <chmod perm="u+x">
+                                    <fileset dir="${extractDir}">
+                                        <include name="traceur" />
+                                        <include name="traceur-build" />
+                                    </fileset>
+                                </chmod>
+                                <exec executable="make" dir="${extractDir}">
+                                    <arg value="bin/traceur.js" />
+                                    <arg value="bin/traceur-runtime.js" />
+                                </exec>
                                 <move file="${extractDir}/package.json" toDir="${destDir}" />
+                                <move file="${extractDir}/bin" toDir="${destDir}" />
                                 <move file="${extractDir}/src" toDir="${destDir}" />
                             </target>
                         </configuration>
