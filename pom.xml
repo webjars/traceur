@@ -87,6 +87,7 @@
                                 <move file="${extractDir}/package.json" toDir="${destDir}" />
                                 <move file="${extractDir}/bin" toDir="${destDir}" />
                                 <move file="${extractDir}/src" toDir="${destDir}" />
+                                <move file="${extractDir}/node_modules" toDir="${destDir}" />
                             </target>
                         </configuration>
                     </execution>
