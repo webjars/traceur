@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>traceur</artifactId>
-    <version>0.0.79-1</version>
+    <version>0.0.79-2-SNAPSHOT</version>
     <name>traceur-compiler</name>
     <description>google traceur ES6 compiler</description>
     <url>http://webjars.org</url>
@@ -28,7 +28,7 @@
         <url>http://github.com/webjars/traceur</url>
         <connection>scm:git:https://github.com/webjars/traceur.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/traceur.git</developerConnection>
-        <tag>traceur-0.0.79-1</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <developers>
