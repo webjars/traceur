@@ -72,22 +72,22 @@
                         </goals>
                          <configuration>
                             <target>
-                                <get src="${upstream.url}/archive/${upstreamVersion}.zip" dest="${project.build.directory}/${upstreamVersion}.zip" />
-                                <unzip src="${project.build.directory}/${upstreamVersion}.zip" dest="${project.build.directory}" />
+                                <get src="${upstream.url}/archive/${upstreamVersion}.zip" dest="${project.build.directory}/${upstreamVersion}.zip"/>
+                                <unzip src="${project.build.directory}/${upstreamVersion}.zip" dest="${project.build.directory}"/>
                                 <chmod perm="u+x">
                                     <fileset dir="${extractDir}">
-                                        <include name="traceur" />
-                                        <include name="traceur-build" />
+                                        <include name="traceur"/>
+                                        <include name="traceur-build"/>
                                     </fileset>
                                 </chmod>
                                 <exec executable="make" dir="${extractDir}">
-                                    <arg value="bin/traceur.js" />
-                                    <arg value="bin/traceur-runtime.js" />
+                                    <arg value="bin/traceur.js"/>
+                                    <arg value="bin/traceur-runtime.js"/>
                                 </exec>
-                                <move file="${extractDir}/package.json" toDir="${destDir}" />
-                                <move file="${extractDir}/bin" toDir="${destDir}" />
-                                <move file="${extractDir}/src" toDir="${destDir}" />
-                                <move file="${extractDir}/node_modules" toDir="${destDir}" />
+                                <move file="${extractDir}/package.json" toDir="${destDir}"/>
+                                <move file="${extractDir}/bin" toDir="${destDir}"/>
+                                <move file="${extractDir}/src" toDir="${destDir}"/>
+                                <move file="${extractDir}/node_modules" toDir="${destDir}"/>
                             </target>
                         </configuration>
                     </execution>
@@ -97,13 +97,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.5</version>
+                <version>2.5.1</version>
             </plugin>
 
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.5.1</version>
+                <version>1.6.5</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>sonatype-nexus-staging</serverId>
