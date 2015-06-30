@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>traceur</artifactId>
-    <version>0.0.90-SNAPSHOT</version>
+    <version>0.0.90</version>
     <name>traceur-compiler</name>
     <description>google traceur ES6 compiler</description>
     <url>http://webjars.org</url>
@@ -28,7 +28,7 @@
         <url>http://github.com/webjars/traceur</url>
         <connection>scm:git:https://github.com/webjars/traceur.git</connection>
         <developerConnection>scm:git:https://github.com/webjars/traceur.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>traceur-0.0.90</tag>
     </scm>
 
     <developers>
@@ -72,22 +72,22 @@
                         </goals>
                          <configuration>
                             <target>
-                                <get src="${upstream.url}/archive/${upstreamVersion}.zip" dest="${project.build.directory}/${upstreamVersion}.zip"/>
-                                <unzip src="${project.build.directory}/${upstreamVersion}.zip" dest="${project.build.directory}"/>
+                                <get src="${upstream.url}/archive/${upstreamVersion}.zip" dest="${project.build.directory}/${upstreamVersion}.zip" />
+                                <unzip src="${project.build.directory}/${upstreamVersion}.zip" dest="${project.build.directory}" />
                                 <chmod perm="u+x">
                                     <fileset dir="${extractDir}">
-                                        <include name="traceur"/>
-                                        <include name="traceur-build"/>
+                                        <include name="traceur" />
+                                        <include name="traceur-build" />
                                     </fileset>
                                 </chmod>
                                 <exec executable="make" dir="${extractDir}">
-                                    <arg value="bin/traceur.js"/>
-                                    <arg value="bin/traceur-runtime.js"/>
+                                    <arg value="bin/traceur.js" />
+                                    <arg value="bin/traceur-runtime.js" />
                                 </exec>
-                                <move file="${extractDir}/package.json" toDir="${destDir}"/>
-                                <move file="${extractDir}/bin" toDir="${destDir}"/>
-                                <move file="${extractDir}/src" toDir="${destDir}"/>
-                                <move file="${extractDir}/node_modules" toDir="${destDir}"/>
+                                <move file="${extractDir}/package.json" toDir="${destDir}" />
+                                <move file="${extractDir}/bin" toDir="${destDir}" />
+                                <move file="${extractDir}/src" toDir="${destDir}" />
+                                <move file="${extractDir}/node_modules" toDir="${destDir}" />
                             </target>
                         </configuration>
                     </execution>
